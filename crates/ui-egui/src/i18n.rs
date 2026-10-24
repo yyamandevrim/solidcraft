@@ -300,13 +300,13 @@ mod tests {
         ENGLISH.messages().values().map(String::as_str).collect()
     }
 
-    /// Catalogs delivered complete. English is the source catalog; Czech, Italian, Japanese and Chinese
+    /// Catalogs delivered complete. English is the source catalog; Japanese, Turkish and Chinese
     /// are complete. German, Korean, Malay, Russian, French and Ukrainian
     /// are partial (German and Korean predate the coverage guards; Russian, French and Ukrainian
     /// are kept partial so a new label doesn't need more translations), so their gaps fall back
     /// to English and are reported by `cargo xtask i18n` without failing the build, while
     /// nothing in the complete catalogs may regress.
-    const COMPLETE: &[&str] = &["ja", "zh"];
+    const COMPLETE: &[&str] = &["ja", "tr", "zh"];
 
     /// `text()` falls back to English silently, so a message a complete locale never received is
     /// shown in English inside an otherwise translated UI, with nothing in the build to say so.
@@ -393,6 +393,7 @@ mod tests {
             ("ru", "Фланец", "Зебра-анализ", "Исследование движения"),
             ("fr", "Bord tombé", "Analyse zébrée", "Étude de mouvement"),
             ("uk", "Фланець", "Зебра-аналіз", "Дослідження руху"),
+            ("tr", "Flanş", "Zebra analizi", "Hareket etüdü"),
         ];
         for (lang, flange, zebra, motion) in cases {
             let locale = Locale::for_language(lang);
